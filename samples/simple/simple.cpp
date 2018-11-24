@@ -11,7 +11,7 @@
 #include "entours.h"
 
 static LONG dwSlept = 0;
-static DWORD (WINAPI * TrueSleepEx)(DWORD dwMilliseconds, BOOL bAlertable) = SleepEx;
+static auto TrueSleepEx = &SleepEx;
 
 extern "C"
 DWORD WINAPI TimedSleepEx(DWORD dwMilliseconds, BOOL bAlertable)

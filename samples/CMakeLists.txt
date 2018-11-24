@@ -111,7 +111,7 @@ add_test(
     NAME sleep5
     COMMAND $<TARGET_FILE:sleep5>)
 
-if (ENTOURS_BITS EQUALS 32)
+if (ENTOURS_BITS EQUAL 32)
     add_test(
         NAME setdll-simple32
         COMMAND $<TARGET_FILE:setdll> -d:$<TARGET_FILE:simple32> $<TARGET_FILE:sleep5>)
@@ -133,7 +133,7 @@ add_test(
     NAME sleep5-3
     COMMAND $<TARGET_FILE:sleep5>)
 
-if (ENTOURS_BITS EQUALS 32)
+if (ENTOURS_BITS EQUAL 32)
     add_test(
         NAME withdll-simple32
         COMMAND $<TARGET_FILE:withdll> -d:$<TARGET_FILE:simple32> $<TARGET_FILE:sleep5>)
