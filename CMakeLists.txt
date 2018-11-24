@@ -55,7 +55,7 @@ elseif (MSVC)
         string(REPLACE "/MD" "/MT" ${CompilerFlags} "${${CompilerFlags}}")
     endforeach()
 
-    add_link_options(/NODEFAULTLIB:libcmtd)
+    #add_link_options(/NODEFAULTLIB:libcmtd)
 endif()
 
 ##############################################################################

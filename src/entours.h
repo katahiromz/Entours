@@ -54,13 +54,6 @@
 
 #include "unsal2.h"
 
-#undef C_ASSERT
-#if __cplusplus >= 201103L
-    #define C_ASSERT(expr) static_assert(expr, #expr)
-#else
-    #define C_ASSERT(expr) typedef char __C_ASSERT__[(expr) ? 1 : -1]
-#endif
-
 #if __cplusplus >= 201103L
     #define ENTOURS_ALIGNAS(x) alignas(x)
 #else
