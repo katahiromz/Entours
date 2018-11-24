@@ -251,11 +251,6 @@ static PCHAR do_ewstr(PCHAR pszOut, PCHAR pszEnd, PCWSTR pszIn)
     return pszOut;
 }
 
-#if _MSC_VER >= 1900
-    #pragma warning(push)
-    #pragma warning(disable:4456) // declaration hides previous local declaration
-#endif
-
 VOID VSafePrintf(PCSTR pszMsg, va_list args, PCHAR pszBuffer, LONG cbBuffer)
 {
     PCHAR pszOut = pszBuffer;
@@ -605,10 +600,6 @@ VOID VSafePrintf(PCSTR pszMsg, va_list args, PCHAR pszBuffer, LONG cbBuffer)
         pszOut = do_str(pszOut, pszEnd, "-");
     }
 }
-
-#if _MSC_VER >= 1900
-    #pragma warning(pop)
-#endif
 
 PCHAR SafePrintf(PCHAR pszBuffer, LONG cbBuffer, PCSTR pszMsg, ...)
 {
