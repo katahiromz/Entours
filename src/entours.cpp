@@ -1448,11 +1448,9 @@ PVOID WINAPI EntourSetSystemRegionUpperBound(_In_ PVOID pSystemRegionUpperBound)
 LONG WINAPI EntourTransactionBegin()
 {
     // Only one transaction is allowed at a time.
-_Benign_race_begin_
     if (s_nPendingThreadId != 0) {
         return ERROR_INVALID_OPERATION;
     }
-_Benign_race_end_
 
     // Make sure only one thread can start a transaction.
     if (InterlockedCompareExchange(&s_nPendingThreadId, (LONG)GetCurrentThreadId(), 0) != 0) {

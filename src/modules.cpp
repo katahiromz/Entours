@@ -433,7 +433,7 @@ HMODULE WINAPI EntourGetContainingModule(_In_ PVOID pvAddr)
 }
 
 
-static inline PBYTE RvaAdjust(_Pre_notnull_ PIMAGE_DOS_HEADER pDosHeader, _In_ DWORD raddr)
+static inline PBYTE RvaAdjust(PIMAGE_DOS_HEADER pDosHeader, _In_ DWORD raddr)
 {
     if (raddr != NULL) {
         return ((PBYTE)pDosHeader) + raddr;

@@ -131,7 +131,6 @@ set(ROOT ${CMAKE_SOURCE_DIR})
 set(INCD "${CMAKE_BINARY_DIR}/include")
 set(LIBD "${CMAKE_BINARY_DIR}/lib.${ENTOURS_TARGET_PROCESSOR}${ENTOURS_CONFIG}")
 set(BIND "${CMAKE_BINARY_DIR}/bin.${ENTOURS_TARGET_PROCESSOR}${ENTOURS_CONFIG}")
-set(OBJD "${CMAKE_BINARY_DIR}/obj.${ENTOURS_TARGET_PROCESSOR}${ENTOURS_CONFIG}")
 
 if (NOT (ENTOURS_OPTION_PROCESSOR STREQUAL ""))
     set(OPTD "${CMAKE_BINARY_DIR}/bin.${ENTOURS_OPTION_PROCESSOR}${ENTOURS_CONFIG}")
@@ -151,12 +150,6 @@ set(BINDS "${CMAKE_BINARY_DIR}/bin.x86${ENTOURS_CONFIG}"
           "${CMAKE_BINARY_DIR}/bin.arm${ENTOURS_CONFIG}"
           "${CMAKE_BINARY_DIR}/bin.arm64${ENTOURS_CONFIG}")
 
-set(OBJDS "${CMAKE_BINARY_DIR}/obj.x86${ENTOURS_CONFIG}"
-          "${CMAKE_BINARY_DIR}/obj.x64${ENTOURS_CONFIG}"
-          "${CMAKE_BINARY_DIR}/obj.ia64${ENTOURS_CONFIG}"
-          "${CMAKE_BINARY_DIR}/obj.arm${ENTOURS_CONFIG}"
-          "${CMAKE_BINARY_DIR}/obj.arm64${ENTOURS_CONFIG}")
-
 if (NOT (EXISTS "${INCD}"))
     file(MAKE_DIRECTORY "${INCD}")
     message(STATUS "Created ${INCD}")
@@ -168,10 +161,6 @@ endif()
 if (NOT (EXISTS "${BIND}"))
     file(MAKE_DIRECTORY "${BIND}")
     message(STATUS "Created ${BIND}")
-endif()
-if (NOT (EXISTS "${OBJD}"))
-    file(MAKE_DIRECTORY "${OBJD}")
-    message(STATUS "Created ${OBJD}")
 endif()
 
 # set output directory
