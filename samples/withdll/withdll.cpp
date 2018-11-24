@@ -1,6 +1,7 @@
 // Test EntourCreateProcessWithDll function (withdll.cpp).
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 // Copyright (c) 2018 Katayama Hirofumi MZ <katayama.hirofumi.mz@gmail.com>.
+
 #include <stdio.h>
 #include <windows.h>
 #include "entours.h"
@@ -408,7 +409,7 @@ int main(int argc, char **argv)
     }
 
     /////////////////////////////////////////////////////////// Validate DLLs.
-    //
+
     for (DWORD n = 0; n < nDlls; n++) {
         CHAR szDllPath[1024];
         PCHAR pszFilePart = NULL;
@@ -447,6 +448,7 @@ int main(int argc, char **argv)
     }
 
     //////////////////////////////////////////////////////////////////////////
+
     STARTUPINFOA si;
     PROCESS_INFORMATION pi;
     CHAR szCommand[2048];
