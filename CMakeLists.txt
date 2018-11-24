@@ -173,7 +173,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIND})
 
 ##############################################################################
 
-include_directories(${INCDS} samples/syelog)
+include_directories(src samples/syelog)
 
 # subdirectories
 subdirs(src)
