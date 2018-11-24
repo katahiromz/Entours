@@ -44,7 +44,7 @@ BOOL WINAPI DllMain(HINSTANCE hinst, DWORD dwReason, LPVOID reserved)
 
         EntourTransactionBegin();
         EntourUpdateThread(GetCurrentThread());
-        EntourAttach(&(PVOID&)TrueSleepEx, (void *)TimedSleepEx);
+        EntourAttach(TrueSleepEx, TimedSleepEx);
         error = EntourTransactionCommit();
 
         if (error == NO_ERROR) {
@@ -59,7 +59,7 @@ BOOL WINAPI DllMain(HINSTANCE hinst, DWORD dwReason, LPVOID reserved)
     else if (dwReason == DLL_PROCESS_DETACH) {
         EntourTransactionBegin();
         EntourUpdateThread(GetCurrentThread());
-        EntourDetach(&(PVOID&)TrueSleepEx, (void *)TimedSleepEx);
+        EntourDetach(TrueSleepEx, TimedSleepEx);
         error = EntourTransactionCommit();
 
         printf("simple" ENTOURS_STRINGIFY(ENTOURS_BITS) ".dll:"

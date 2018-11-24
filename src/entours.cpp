@@ -1431,17 +1431,17 @@ BOOL WINAPI EntourSetRetainRegions(_In_ BOOL fRetain)
     return fPrevious;
 }
 
-PVOID WINAPI EntourSetSystemRegionLowerBound(_In_ PVOID pSystemRegionLowerBound)
+PVOID WINAPI EntourSetSystemRegionLowerBound(_In_ const VOID *pSystemRegionLowerBound)
 {
     PVOID pPrevious = s_pSystemRegionLowerBound;
-    s_pSystemRegionLowerBound = pSystemRegionLowerBound;
+    s_pSystemRegionLowerBound = (PVOID)pSystemRegionLowerBound;
     return pPrevious;
 }
 
-PVOID WINAPI EntourSetSystemRegionUpperBound(_In_ PVOID pSystemRegionUpperBound)
+PVOID WINAPI EntourSetSystemRegionUpperBound(_In_ const VOID *pSystemRegionUpperBound)
 {
     PVOID pPrevious = s_pSystemRegionUpperBound;
-    s_pSystemRegionUpperBound = pSystemRegionUpperBound;
+    s_pSystemRegionUpperBound = (PVOID)pSystemRegionUpperBound;
     return pPrevious;
 }
 
@@ -1844,17 +1844,17 @@ LONG WINAPI EntourUpdateThread(_In_ HANDLE hThread)
 
 ///////////////////////////////////////////////////////////// Transacted APIs.
 
-LONG WINAPI EntourAttach(_Inout_ PVOID *ppPointer,
-                         _In_ PVOID pEntour)
+LONG WINAPI EntourAttach_(_Inout_ PVOID *ppPointer,
+                          _In_ const VOID *pEntour)
 {
-    return EntourAttachEx(ppPointer, pEntour, NULL, NULL, NULL);
+    return EntourAttachEx_(ppPointer, pEntour, NULL, NULL, NULL);
 }
 
-LONG WINAPI EntourAttachEx(_Inout_ PVOID *ppPointer,
-                           _In_ PVOID pEntour,
-                           _Out_opt_ PENTOUR_TRAMPOLINE *ppRealTrampoline,
-                           _Out_opt_ PVOID *ppRealTarget,
-                           _Out_opt_ PVOID *ppRealEntour)
+LONG WINAPI EntourAttachEx_(_Inout_ PVOID *ppPointer,
+                            _In_ const VOID *pEntour,
+                            _Out_opt_ PENTOUR_TRAMPOLINE *ppRealTrampoline,
+                            _Out_opt_ PVOID *ppRealTarget,
+                            _Out_opt_ PVOID *ppRealEntour)
 {
     LONG error = NO_ERROR;
 
@@ -1933,7 +1933,7 @@ LONG WINAPI EntourAttachEx(_Inout_ PVOID *ppPointer,
         *ppRealTarget = pbTarget;
     }
     if (ppRealEntour != NULL) {
-        *ppRealEntour = pEntour;
+        *ppRealEntour = (PVOID)pEntour;
     }
 
     o = new NOTHROW EntourOperation;
@@ -2204,8 +2204,8 @@ LONG WINAPI EntourAttachEx(_Inout_ PVOID *ppPointer,
     return NO_ERROR;
 }
 
-LONG WINAPI EntourDetach(_Inout_ PVOID *ppPointer,
-                         _In_ const VOID *pEntour)
+LONG WINAPI EntourDetach_(_Inout_ PVOID *ppPointer,
+                          _In_ const VOID *pEntour)
 {
     LONG error = NO_ERROR;
 
