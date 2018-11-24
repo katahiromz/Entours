@@ -13,33 +13,17 @@
 //////////////////////////////////////////////////////////////////////////////
 
 extern "C" {
-    extern HANDLE ( WINAPI * Real_CreateFileW)(LPCWSTR a0,
-                                               DWORD a1,
-                                               DWORD a2,
-                                               LPSECURITY_ATTRIBUTES a3,
-                                               DWORD a4,
-                                               DWORD a5,
-                                               HANDLE a6);
-    extern BOOL ( WINAPI * Real_WriteFile)(HANDLE hFile,
-                                           LPCVOID lpBuffer,
-                                           DWORD nNumberOfBytesToWrite,
-                                           LPDWORD lpNumberOfBytesWritten,
-                                           LPOVERLAPPED lpOverlapped);
-    extern BOOL ( WINAPI * Real_FlushFileBuffers)(HANDLE hFile);
-    extern BOOL ( WINAPI * Real_CloseHandle)(HANDLE hObject);
-
-    extern BOOL ( WINAPI * Real_WaitNamedPipeW)(LPCWSTR lpNamedPipeName, DWORD nTimeOut);
-    extern BOOL ( WINAPI * Real_SetNamedPipeHandleState)(HANDLE hNamedPipe,
-                                                         LPDWORD lpMode,
-                                                         LPDWORD lpMaxCollectionCount,
-                                                         LPDWORD lpCollectDataTimeout);
-
-    extern DWORD ( WINAPI * Real_GetCurrentProcessId)(VOID);
-    extern VOID ( WINAPI * Real_GetSystemTimeAsFileTime)(LPFILETIME lpSystemTimeAsFileTime);
-
-    extern VOID ( WINAPI * Real_InitializeCriticalSection)(LPCRITICAL_SECTION lpSection);
-    extern VOID ( WINAPI * Real_EnterCriticalSection)(LPCRITICAL_SECTION lpSection);
-    extern VOID ( WINAPI * Real_LeaveCriticalSection)(LPCRITICAL_SECTION lpSection);
+    extern decltype(&CreateFileW) Real_CreateFileW;
+    extern decltype(&WriteFile) Real_WriteFile;
+    extern decltype(&FlushFileBuffers) Real_FlushFileBuffers;
+    extern decltype(&CloseHandle) Real_CloseHandle;
+    extern decltype(&WaitNamedPipeW) Real_WaitNamedPipeW;
+    extern decltype(&SetNamedPipeHandleState) Real_SetNamedPipeHandleState;
+    extern decltype(&GetCurrentProcessId) Real_GetCurrentProcessId;
+    extern decltype(&GetSystemTimeAsFileTime) Real_GetSystemTimeAsFileTime;
+    extern decltype(&InitializeCriticalSection) Real_InitializeCriticalSection;
+    extern decltype(&EnterCriticalSection) Real_EnterCriticalSection;
+    extern decltype(&LeaveCriticalSection) Real_LeaveCriticalSection;
 }
 
 ///////////////////////////////////////////////////////////////////// VPrintf.
