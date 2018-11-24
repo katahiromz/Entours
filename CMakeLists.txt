@@ -6,6 +6,9 @@
 # CMake minimum version
 cmake_minimum_required(VERSION 3.12.4)
 
+# enable testing
+enable_testing()
+
 # project name and language
 project(Entours CXX)
 

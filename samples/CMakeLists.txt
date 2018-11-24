@@ -99,3 +99,48 @@ subdirs(
     withdll
     simple
 )
+
+##############################################################################
+# tests
+
+add_test(
+    NAME setdll-sleep5
+    COMMAND $<TARGET_FILE:setdll> -r $<TARGET_FILE:sleep5>)
+
+add_test(
+    NAME sleep5
+    COMMAND $<TARGET_FILE:sleep5>)
+
+if (ENTOURS_BITS EQUALS 32)
+    add_test(
+        NAME setdll-simple32
+        COMMAND $<TARGET_FILE:setdll> -d:$<TARGET_FILE:simple32> $<TARGET_FILE:sleep5>)
+else()
+    add_test(
+        NAME setdll-simple64
+        COMMAND $<TARGET_FILE:setdll> -d:$<TARGET_FILE:simple64> $<TARGET_FILE:sleep5>)
+endif()
+
+add_test(
+    NAME sleep5-2
+    COMMAND $<TARGET_FILE:sleep5>)
+
+add_test(
+    NAME remove-simple
+    COMMAND $<TARGET_FILE:setdll> -r $<TARGET_FILE:sleep5>)
+
+add_test(
+    NAME sleep5-3
+    COMMAND $<TARGET_FILE:sleep5>)
+
+if (ENTOURS_BITS EQUALS 32)
+    add_test(
+        NAME withdll-simple32
+        COMMAND $<TARGET_FILE:withdll> -d:$<TARGET_FILE:simple32> $<TARGET_FILE:sleep5>)
+else()
+    add_test(
+        NAME withdll-simple64
+        COMMAND $<TARGET_FILE:withdll> -d:$<TARGET_FILE:simple64> $<TARGET_FILE:sleep5>)
+endif()
+
+##############################################################################
