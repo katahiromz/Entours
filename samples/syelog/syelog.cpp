@@ -624,7 +624,7 @@ static BYTE             s_nFacility = SYELOG_FACILITY_APPLICATION;
 static CHAR             s_szIdent[256] = "";
 static DWORD            s_nProcessId = 0;
 
-static inline INT syelogCompareTimes(CONST PFILETIME pft1, CONST PFILETIME pft2)
+static inline INT syelogCompareTimes(const FILETIME *pft1, const FILETIME *pft2)
 {
     INT64 ut1 = *(PINT64)pft1;
     INT64 ut2 = *(PINT64)pft2;
