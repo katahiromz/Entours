@@ -13,57 +13,17 @@
 #include "entours.h"
 
 extern "C" {
-
-    HANDLE ( WINAPI *
-             Real_CreateFileW)(LPCWSTR a0,
-                               DWORD a1,
-                               DWORD a2,
-                               LPSECURITY_ATTRIBUTES a3,
-                               DWORD a4,
-                               DWORD a5,
-                               HANDLE a6)
-        = CreateFileW;
-
-    BOOL ( WINAPI *
-           Real_WriteFile)(HANDLE hFile,
-                           LPCVOID lpBuffer,
-                           DWORD nNumberOfBytesToWrite,
-                           LPDWORD lpNumberOfBytesWritten,
-                           LPOVERLAPPED lpOverlapped)
-        = WriteFile;
-    BOOL ( WINAPI *
-           Real_FlushFileBuffers)(HANDLE hFile)
-        = FlushFileBuffers;
-    BOOL ( WINAPI *
-           Real_CloseHandle)(HANDLE hObject)
-        = CloseHandle;
-
-    BOOL ( WINAPI *
-           Real_WaitNamedPipeW)(LPCWSTR lpNamedPipeName, DWORD nTimeOut)
-        = WaitNamedPipeW;
-    BOOL ( WINAPI *
-           Real_SetNamedPipeHandleState)(HANDLE hNamedPipe,
-                                         LPDWORD lpMode,
-                                         LPDWORD lpMaxCollectionCount,
-                                         LPDWORD lpCollectDataTimeout)
-        = SetNamedPipeHandleState;
-
-    DWORD ( WINAPI *
-            Real_GetCurrentProcessId)(VOID)
-        = GetCurrentProcessId;
-    VOID ( WINAPI *
-           Real_GetSystemTimeAsFileTime)(LPFILETIME lpSystemTimeAsFileTime)
-        = GetSystemTimeAsFileTime;
-
-    VOID ( WINAPI *
-           Real_InitializeCriticalSection)(LPCRITICAL_SECTION lpSection)
-        = InitializeCriticalSection;
-    VOID ( WINAPI *
-           Real_EnterCriticalSection)(LPCRITICAL_SECTION lpSection)
-        = EnterCriticalSection;
-    VOID ( WINAPI *
-           Real_LeaveCriticalSection)(LPCRITICAL_SECTION lpSection)
-        = LeaveCriticalSection;
+    auto Real_CreateFileW = &CreateFileW;
+    auto Real_WriteFile = &WriteFile;
+    auto Real_FlushFileBuffers = &FlushFileBuffers;
+    auto Real_CloseHandle = &CloseHandle;
+    auto Real_WaitNamedPipeW = &WaitNamedPipeW;
+    auto Real_SetNamedPipeHandleState = &SetNamedPipeHandleState;
+    auto Real_GetCurrentProcessId = &GetCurrentProcessId;
+    auto Real_GetSystemTimeAsFileTime = &GetSystemTimeAsFileTime;
+    auto Real_InitializeCriticalSection = &InitializeCriticalSection;
+    auto Real_EnterCriticalSection = &EnterCriticalSection;
+    auto Real_LeaveCriticalSection = &LeaveCriticalSection;
 }
 
 int main(int argc, char **argv)
