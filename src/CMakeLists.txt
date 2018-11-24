@@ -99,5 +99,6 @@ target_compile_options(entours PRIVATE ${ENTOURS_CFLAGS})
 
 configure_file(entours.h ${INCD}/entours.h COPYONLY)
 configure_file(entver.h ${INCD}/entver.h COPYONLY)
+configure_file(unsal2.h ${INCD}/unsal2.h COPYONLY)
 
 ##############################################################################

@@ -1,0 +1,13 @@
+// Version information for simple.rc.
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) 2018 Katayama Hirofumi MZ <katayama.hirofumi.mz@gmail.com>.
+
+#include "entver.h"
+
+#define VER_INTERNALNAME_STR        "simple" ENTOURS_STRINGIFY(ENTOURS_BITS)
+#define VER_ORIGINALFILENAME_STR    "simple" ENTOURS_STRINGIFY(ENTOURS_BITS) ".dll"
+#define VER_FILEDESCRIPTION_STR     "Entours Test Module"
+#define VER_COMPANYNAME_STR         "Microsoft Corporation"
+
+#include "common.ver"

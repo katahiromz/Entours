@@ -58,7 +58,7 @@ endif()
 ##############################################################################
 # options
 
-option(ENTOURS_USE_SAMPLES "Use samples" OFF)
+option(ENTOURS_USE_SAMPLES "Use samples" ON)
 option(ENTOURS_WIN_7 "Windows 7 is target" OFF)
 option(ENTOURS_CL_17_OR_NEWER "CL 17 or newer" OFF)
 option(ENTOURS_ANALYZE "Enable analyzing" OFF)
