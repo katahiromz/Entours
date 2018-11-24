@@ -28,10 +28,10 @@ static CHAR     s_szDllPath[MAX_PATH] = "";
 //  to be imported into the target process.  DLLs must export a function with
 //  ordinal #1 so that the import table touch-up magic works.
 
-static BOOL CALLBACK ExportCallback(_In_opt_ const VOID *pContext,
+static BOOL CALLBACK ExportCallback(_In_opt_ LPCVOID pContext,
                                     _In_ ULONG nOrdinal,
                                     _In_opt_ LPCSTR pszName,
-                                    _In_opt_ const VOID *pCode)
+                                    _In_opt_ LPCVOID pCode)
 {
     (void)pContext;
     (void)pCode;
@@ -61,7 +61,7 @@ BOOL DoesDllExportOrdinal1(PCHAR pszDllPath)
 
 //////////////////////////////////////////////////////////////////////////////
 
-static BOOL CALLBACK ListBywayCallback(_In_opt_ const VOID *pContext,
+static BOOL CALLBACK ListBywayCallback(_In_opt_ LPCVOID pContext,
                                        _In_opt_ LPCSTR pszFile,
                                        _Outptr_result_maybenull_ LPCSTR *ppszOutFile)
 {
@@ -74,7 +74,7 @@ static BOOL CALLBACK ListBywayCallback(_In_opt_ const VOID *pContext,
     return TRUE;
 }
 
-static BOOL CALLBACK ListFileCallback(_In_opt_ const VOID *pContext,
+static BOOL CALLBACK ListFileCallback(_In_opt_ LPCVOID pContext,
                                       _In_ LPCSTR pszOrigFile,
                                       _In_ LPCSTR pszFile,
                                       _Outptr_result_maybenull_ LPCSTR *ppszOutFile)
@@ -86,7 +86,7 @@ static BOOL CALLBACK ListFileCallback(_In_opt_ const VOID *pContext,
     return TRUE;
 }
 
-static BOOL CALLBACK AddBywayCallback(_In_opt_ const VOID *pContext,
+static BOOL CALLBACK AddBywayCallback(_In_opt_ LPCVOID pContext,
                                       _In_opt_ LPCSTR pszFile,
                                       _Outptr_result_maybenull_ LPCSTR *ppszOutFile)
 {

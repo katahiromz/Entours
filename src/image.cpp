@@ -214,7 +214,7 @@ public:                                                 // Manipulation Function
     BOOL                    DataDelete(REFGUID rguid);
     BOOL                    DataPurge();
 
-    BOOL                    EditImports(const VOID *pContext,
+    BOOL                    EditImports(LPCVOID pContext,
                                         PF_ENTOUR_BINARY_BYWAY_CALLBACK pfBywayCallback,
                                         PF_ENTOUR_BINARY_FILE_CALLBACK pfFileCallback,
                                         PF_ENTOUR_BINARY_SYMBOL_CALLBACK pfSymbolCallback,
@@ -1433,7 +1433,7 @@ fail:
     return NULL;
 }
 
-BOOL CImage::EditImports(const VOID *pContext,
+BOOL CImage::EditImports(LPCVOID pContext,
                          PF_ENTOUR_BINARY_BYWAY_CALLBACK pfBywayCallback,
                          PF_ENTOUR_BINARY_FILE_CALLBACK pfFileCallback,
                          PF_ENTOUR_BINARY_SYMBOL_CALLBACK pfSymbolCallback,
@@ -2131,7 +2131,7 @@ BOOL WINAPI EntourBinaryPurgePayloads(_In_ PENTOUR_BINARY pBinary)
 
 //////////////////////////////////////////////////////////////////////////////
 
-static BOOL CALLBACK ResetBywayCallback(_In_opt_ const VOID *pContext,
+static BOOL CALLBACK ResetBywayCallback(_In_opt_ LPCVOID pContext,
                                         _In_opt_ LPCSTR pszFile,
                                         _Outptr_result_maybenull_ LPCSTR *ppszOutFile)
 {
@@ -2142,7 +2142,7 @@ static BOOL CALLBACK ResetBywayCallback(_In_opt_ const VOID *pContext,
     return TRUE;
 }
 
-static BOOL CALLBACK ResetFileCallback(_In_opt_ const VOID *pContext,
+static BOOL CALLBACK ResetFileCallback(_In_opt_ LPCVOID pContext,
                                        _In_ LPCSTR pszOrigFile,
                                        _In_ LPCSTR pszFile,
                                        _Outptr_result_maybenull_ LPCSTR *ppszOutFile)
@@ -2154,7 +2154,7 @@ static BOOL CALLBACK ResetFileCallback(_In_opt_ const VOID *pContext,
     return TRUE;
 }
 
-static BOOL CALLBACK ResetSymbolCallback(_In_opt_ const VOID *pContext,
+static BOOL CALLBACK ResetSymbolCallback(_In_opt_ LPCVOID pContext,
                                          _In_ ULONG nOrigOrdinal,
                                          _In_ ULONG nOrdinal,
                                          _Out_ ULONG *pnOutOrdinal,
@@ -2188,7 +2188,7 @@ BOOL WINAPI EntourBinaryResetImports(_In_ PENTOUR_BINARY pBinary)
 //////////////////////////////////////////////////////////////////////////////
 
 BOOL WINAPI EntourBinaryEditImports(_In_ PENTOUR_BINARY pBinary,
-                                    _In_opt_ const VOID *pContext,
+                                    _In_opt_ LPCVOID pContext,
                                     _In_opt_ PF_ENTOUR_BINARY_BYWAY_CALLBACK pfByway,
                                     _In_opt_ PF_ENTOUR_BINARY_FILE_CALLBACK pfFile,
                                     _In_opt_ PF_ENTOUR_BINARY_SYMBOL_CALLBACK pfSymbol,

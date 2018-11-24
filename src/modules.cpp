@@ -386,7 +386,7 @@ ULONG WINAPI EntourGetModuleSize(_In_opt_ HMODULE hModule)
     }
 }
 
-HMODULE WINAPI EntourGetContainingModule(_In_ const VOID *pvAddr)
+HMODULE WINAPI EntourGetContainingModule(_In_ LPCVOID pvAddr)
 {
     MEMORY_BASIC_INFORMATION mbi;
     ZeroMemory(&mbi, sizeof(mbi));
@@ -442,7 +442,7 @@ static inline PBYTE RvaAdjust(PIMAGE_DOS_HEADER pDosHeader, _In_ DWORD raddr)
 }
 
 BOOL WINAPI EntourEnumerateExports(_In_ HMODULE hModule,
-                                   _In_opt_ const VOID *pContext,
+                                   _In_opt_ LPCVOID pContext,
                                    _In_ PF_ENTOUR_ENUMERATE_EXPORT_CALLBACK pfExport)
 {
     PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)hModule;
@@ -518,7 +518,7 @@ BOOL WINAPI EntourEnumerateExports(_In_ HMODULE hModule,
 }
 
 BOOL WINAPI EntourEnumerateImportsEx(_In_opt_ HMODULE hModule,
-                                     _In_opt_ const VOID *pContext,
+                                     _In_opt_ LPCVOID pContext,
                                      _In_opt_ PF_ENTOUR_IMPORT_FILE_CALLBACK pfImportFile,
                                      _In_opt_ PF_ENTOUR_IMPORT_FUNC_CALLBACK_EX pfImportFunc)
 {
@@ -620,7 +620,7 @@ BOOL WINAPI EntourEnumerateImportsEx(_In_opt_ HMODULE hModule,
 // Context for EntourEnumerateImportsThunk, which adapts "regular" callbacks for use with "Ex".
 struct _ENTOUR_ENUMERATE_IMPORTS_THUNK_CONTEXT
 {
-    const VOID *pContext;
+    LPCVOID pContext;
     PF_ENTOUR_IMPORT_FUNC_CALLBACK pfImportFunc;
 };
 
@@ -629,7 +629,7 @@ struct _ENTOUR_ENUMERATE_IMPORTS_THUNK_CONTEXT
 static
 BOOL
 CALLBACK
-EntourEnumerateImportsThunk(_In_ const VOID *VoidContext,
+EntourEnumerateImportsThunk(_In_ LPCVOID VoidContext,
                             _In_ DWORD nOrdinal,
                             _In_opt_ PCSTR pszFunc,
                             _In_opt_ PVOID* ppvFunc)
@@ -640,7 +640,7 @@ EntourEnumerateImportsThunk(_In_ const VOID *VoidContext,
 }
 
 BOOL WINAPI EntourEnumerateImports(_In_opt_ HMODULE hModule,
-                                   _In_opt_ const VOID *pContext,
+                                   _In_opt_ LPCVOID pContext,
                                    _In_opt_ PF_ENTOUR_IMPORT_FILE_CALLBACK pfImportFile,
                                    _In_opt_ PF_ENTOUR_IMPORT_FUNC_CALLBACK pfImportFunc)
 {

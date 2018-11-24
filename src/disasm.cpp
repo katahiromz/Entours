@@ -279,9 +279,9 @@ class CEntourDis
     BYTE                m_rbScratchDst[64]; // matches or exceeds rbCode
 };
 
-PVOID WINAPI EntourCopyInstruction(_In_opt_ const VOID *pDst,
+PVOID WINAPI EntourCopyInstruction(_In_opt_ LPCVOID pDst,
                                    _Inout_opt_ PVOID *ppDstPool,
-                                   _In_ const VOID *pSrc,
+                                   _In_ LPCVOID pSrc,
                                    _Out_opt_ PVOID *ppTarget,
                                    _Out_opt_ LONG *plExtra)
 {
@@ -2156,9 +2156,9 @@ VOID ENTOUR_IA64_BUNDLE::SetStop()
 
 #endif // ENTOURS_IA64
 
-PVOID WINAPI EntourCopyInstruction(_In_opt_ const VOID *pDst,
+PVOID WINAPI EntourCopyInstruction(_In_opt_ LPCVOID pDst,
                                    _Inout_opt_ PVOID *ppDstPool,
-                                   _In_ const VOID *pSrc,
+                                   _In_ LPCVOID pSrc,
                                    _Out_opt_ PVOID *ppTarget,
                                    _Out_opt_ LONG *plExtra)
 {
@@ -3481,9 +3481,9 @@ PBYTE CEntourDis::CopyInstruction(PBYTE pDst,
 }
 
 
-PVOID WINAPI EntourCopyInstruction(_In_opt_ const VOID *pDst,
+PVOID WINAPI EntourCopyInstruction(_In_opt_ LPCVOID pDst,
                                    _Inout_opt_ PVOID *ppDstPool,
-                                   _In_ const VOID *pSrc,
+                                   _In_ LPCVOID pSrc,
                                    _Out_opt_ PVOID *ppTarget,
                                    _Out_opt_ LONG *plExtra)
 {
@@ -4167,9 +4167,9 @@ BYTE CEntourDis::CopyLdrLiteral(BYTE* pSource, BYTE* pDest, ULONG instruction)
 }
 
 
-PVOID WINAPI EntourCopyInstruction(_In_opt_ const VOID *pDst,
+PVOID WINAPI EntourCopyInstruction(_In_opt_ LPCVOID pDst,
                                    _Inout_opt_ PVOID *ppDstPool,
-                                   _In_ const VOID *pSrc,
+                                   _In_ LPCVOID pSrc,
                                    _Out_opt_ PVOID *ppTarget,
                                    _Out_opt_ LONG *plExtra)
 {

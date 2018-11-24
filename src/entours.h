@@ -221,18 +221,18 @@ typedef struct _ENTOUR_EXE_HELPER
 ///////////////////////////////////////////////////////////// Binary Typedefs.
 
 typedef BOOL (CALLBACK *PF_ENTOUR_BINARY_BYWAY_CALLBACK)(
-    _In_opt_ const VOID *pContext,
+    _In_opt_ LPCVOID pContext,
     _In_opt_ LPCSTR pszFile,
     _Outptr_result_maybenull_ LPCSTR *ppszOutFile);
 
 typedef BOOL (CALLBACK *PF_ENTOUR_BINARY_FILE_CALLBACK)(
-    _In_opt_ const VOID *pContext,
+    _In_opt_ LPCVOID pContext,
     _In_ LPCSTR pszOrigFile,
     _In_ LPCSTR pszFile,
     _Outptr_result_maybenull_ LPCSTR *ppszOutFile);
 
 typedef BOOL (CALLBACK *PF_ENTOUR_BINARY_SYMBOL_CALLBACK)(
-    _In_opt_ const VOID *pContext,
+    _In_opt_ LPCVOID pContext,
     _In_ ULONG nOrigOrdinal,
     _In_ ULONG nOrdinal,
     _Out_ ULONG *pnOutOrdinal,
@@ -241,24 +241,24 @@ typedef BOOL (CALLBACK *PF_ENTOUR_BINARY_SYMBOL_CALLBACK)(
     _Outptr_result_maybenull_ LPCSTR *ppszOutSymbol);
 
 typedef BOOL (CALLBACK *PF_ENTOUR_BINARY_COMMIT_CALLBACK)(
-    _In_opt_ const VOID *pContext);
+    _In_opt_ LPCVOID pContext);
 
-typedef BOOL (CALLBACK *PF_ENTOUR_ENUMERATE_EXPORT_CALLBACK)(_In_opt_ const VOID *pContext,
+typedef BOOL (CALLBACK *PF_ENTOUR_ENUMERATE_EXPORT_CALLBACK)(_In_opt_ LPCVOID pContext,
                                                              _In_ ULONG nOrdinal,
                                                              _In_opt_ LPCSTR pszName,
-                                                             _In_opt_ const VOID *pCode);
+                                                             _In_opt_ LPCVOID pCode);
 
-typedef BOOL (CALLBACK *PF_ENTOUR_IMPORT_FILE_CALLBACK)(_In_opt_ const VOID *pContext,
+typedef BOOL (CALLBACK *PF_ENTOUR_IMPORT_FILE_CALLBACK)(_In_opt_ LPCVOID pContext,
                                                         _In_opt_ HMODULE hModule,
                                                         _In_opt_ LPCSTR pszFile);
 
-typedef BOOL (CALLBACK *PF_ENTOUR_IMPORT_FUNC_CALLBACK)(_In_opt_ const VOID *pContext,
+typedef BOOL (CALLBACK *PF_ENTOUR_IMPORT_FUNC_CALLBACK)(_In_opt_ LPCVOID pContext,
                                                         _In_ DWORD nOrdinal,
                                                         _In_opt_ LPCSTR pszFunc,
-                                                        _In_opt_ const VOID *pvFunc);
+                                                        _In_opt_ LPCVOID pvFunc);
 
 // Same as PF_ENTOUR_IMPORT_FUNC_CALLBACK but extra indirection on last parameter.
-typedef BOOL (CALLBACK *PF_ENTOUR_IMPORT_FUNC_CALLBACK_EX)(_In_opt_ const VOID *pContext,
+typedef BOOL (CALLBACK *PF_ENTOUR_IMPORT_FUNC_CALLBACK_EX)(_In_opt_ LPCVOID pContext,
                                                            _In_ DWORD nOrdinal,
                                                            _In_opt_ LPCSTR pszFunc,
                                                            _In_opt_ PVOID* ppvFunc);
@@ -276,16 +276,16 @@ LONG WINAPI EntourTransactionCommitEx(_Out_opt_ PVOID **pppFailedPointer);
 LONG WINAPI EntourUpdateThread(_In_ HANDLE hThread);
 
 LONG WINAPI EntourAttach_(_Inout_ PVOID *ppPointer,
-                          _In_ const VOID *pEntour);
+                          _In_ LPCVOID pEntour);
 
 LONG WINAPI EntourAttachEx_(_Inout_ PVOID *ppPointer,
-                            _In_ const VOID *pEntour,
+                            _In_ LPCVOID pEntour,
                             _Out_opt_ PENTOUR_TRAMPOLINE *ppRealTrampoline,
                             _Out_opt_ PVOID *ppRealTarget,
                             _Out_opt_ PVOID *ppRealEntour);
 
 LONG WINAPI EntourDetach_(_Inout_ PVOID *ppPointer,
-                          _In_ const VOID *pEntour);
+                          _In_ LPCVOID pEntour);
 
 #define EntourAttach(ppPointer, pEntour) \
     EntourAttach_((PVOID *)(ppPointer), (PVOID)(pEntour))
@@ -296,18 +296,18 @@ LONG WINAPI EntourDetach_(_Inout_ PVOID *ppPointer,
 
 BOOL WINAPI EntourSetIgnoreTooSmall(_In_ BOOL fIgnore);
 BOOL WINAPI EntourSetRetainRegions(_In_ BOOL fRetain);
-PVOID WINAPI EntourSetSystemRegionLowerBound(_In_ const VOID *pSystemRegionLowerBound);
-PVOID WINAPI EntourSetSystemRegionUpperBound(_In_ const VOID *pSystemRegionUpperBound);
+PVOID WINAPI EntourSetSystemRegionLowerBound(_In_ LPCVOID pSystemRegionLowerBound);
+PVOID WINAPI EntourSetSystemRegionUpperBound(_In_ LPCVOID pSystemRegionUpperBound);
 
 ////////////////////////////////////////////////////////////// Code Functions.
 
 PVOID WINAPI EntourFindFunction(_In_ LPCSTR pszModule,
                                 _In_ LPCSTR pszFunction);
-PVOID WINAPI EntourCodeFromPointer(_In_ const VOID *pPointer,
+PVOID WINAPI EntourCodeFromPointer(_In_ LPCVOID pPointer,
                                    _Out_opt_ PVOID *ppGlobals);
-PVOID WINAPI EntourCopyInstruction(_In_opt_ const VOID *pDst,
+PVOID WINAPI EntourCopyInstruction(_In_opt_ LPCVOID pDst,
                                    _Inout_opt_ PVOID *ppDstPool,
-                                   _In_ const VOID *pSrc,
+                                   _In_ LPCVOID pSrc,
                                    _Out_opt_ PVOID *ppTarget,
                                    _Out_opt_ LONG *plExtra);
 BOOL WINAPI EntourSetCodeModule(_In_ HMODULE hModule,
@@ -315,20 +315,20 @@ BOOL WINAPI EntourSetCodeModule(_In_ HMODULE hModule,
 
 ///////////////////////////////////////////////////// Loaded Binary Functions.
 
-HMODULE WINAPI EntourGetContainingModule(_In_ const VOID *pvAddr);
+HMODULE WINAPI EntourGetContainingModule(_In_ LPCVOID pvAddr);
 HMODULE WINAPI EntourEnumerateModules(_In_opt_ HMODULE hModuleLast);
 PVOID WINAPI EntourGetEntryPoint(_In_opt_ HMODULE hModule);
 ULONG WINAPI EntourGetModuleSize(_In_opt_ HMODULE hModule);
 BOOL WINAPI EntourEnumerateExports(_In_ HMODULE hModule,
-                                   _In_opt_ const VOID *pContext,
+                                   _In_opt_ LPCVOID pContext,
                                    _In_ PF_ENTOUR_ENUMERATE_EXPORT_CALLBACK pfExport);
 BOOL WINAPI EntourEnumerateImports(_In_opt_ HMODULE hModule,
-                                   _In_opt_ const VOID *pContext,
+                                   _In_opt_ LPCVOID pContext,
                                    _In_opt_ PF_ENTOUR_IMPORT_FILE_CALLBACK pfImportFile,
                                    _In_opt_ PF_ENTOUR_IMPORT_FUNC_CALLBACK pfImportFunc);
 
 BOOL WINAPI EntourEnumerateImportsEx(_In_opt_ HMODULE hModule,
-                                     _In_opt_ const VOID *pContext,
+                                     _In_opt_ LPCVOID pContext,
                                      _In_opt_ PF_ENTOUR_IMPORT_FILE_CALLBACK pfImportFile,
                                      _In_opt_ PF_ENTOUR_IMPORT_FUNC_CALLBACK_EX pfImportFuncEx);
 
@@ -374,7 +374,7 @@ BOOL WINAPI EntourBinaryDeletePayload(_In_ PENTOUR_BINARY pBinary, _In_ REFGUID 
 BOOL WINAPI EntourBinaryPurgePayloads(_In_ PENTOUR_BINARY pBinary);
 BOOL WINAPI EntourBinaryResetImports(_In_ PENTOUR_BINARY pBinary);
 BOOL WINAPI EntourBinaryEditImports(_In_ PENTOUR_BINARY pBinary,
-                                    _In_opt_ const VOID *pContext,
+                                    _In_opt_ LPCVOID pContext,
                                     _In_opt_ PF_ENTOUR_BINARY_BYWAY_CALLBACK pfByway,
                                     _In_opt_ PF_ENTOUR_BINARY_FILE_CALLBACK pfFile,
                                     _In_opt_ PF_ENTOUR_BINARY_SYMBOL_CALLBACK pfSymbol,
@@ -774,9 +774,9 @@ extern "C" {
 #endif // __cplusplus
 
 #define ENTOUR_OFFLINE_LIBRARY(x)                                       \
-PVOID WINAPI EntourCopyInstruction##x(_In_opt_ const VOID *pDst,              \
+PVOID WINAPI EntourCopyInstruction##x(_In_opt_ LPCVOID pDst,              \
                                       _Inout_opt_ PVOID *ppDstPool,     \
-                                      _In_ const VOID *pSrc,            \
+                                      _In_ LPCVOID pSrc,            \
                                       _Out_opt_ PVOID *ppTarget,        \
                                       _Out_opt_ LONG *plExtra);         \
                                                                         \

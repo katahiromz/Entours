@@ -30,10 +30,10 @@ struct ExportContext
     ULONG   nExports;
 };
 
-static BOOL CALLBACK ExportCallback(_In_opt_ const VOID *pContext,
+static BOOL CALLBACK ExportCallback(_In_opt_ LPCVOID pContext,
                                     _In_ ULONG nOrdinal,
                                     _In_opt_ LPCSTR pszSymbol,
-                                    _In_opt_ const VOID *pbTarget)
+                                    _In_opt_ LPCVOID pbTarget)
 {
     (void)pContext;
     (void)pbTarget;

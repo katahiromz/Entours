@@ -1409,7 +1409,7 @@ static EntourOperation *    s_pPendingOperations    = NULL;
 
 //////////////////////////////////////////////////////////////////////////////
 
-PVOID WINAPI EntourCodeFromPointer(_In_ const VOID *pPointer,
+PVOID WINAPI EntourCodeFromPointer(_In_ LPCVOID pPointer,
                                    _Out_opt_ PVOID *ppGlobals)
 {
     return entour_skip_jmp((PBYTE)pPointer, ppGlobals);
@@ -1431,14 +1431,14 @@ BOOL WINAPI EntourSetRetainRegions(_In_ BOOL fRetain)
     return fPrevious;
 }
 
-PVOID WINAPI EntourSetSystemRegionLowerBound(_In_ const VOID *pSystemRegionLowerBound)
+PVOID WINAPI EntourSetSystemRegionLowerBound(_In_ LPCVOID pSystemRegionLowerBound)
 {
     PVOID pPrevious = s_pSystemRegionLowerBound;
     s_pSystemRegionLowerBound = (PVOID)pSystemRegionLowerBound;
     return pPrevious;
 }
 
-PVOID WINAPI EntourSetSystemRegionUpperBound(_In_ const VOID *pSystemRegionUpperBound)
+PVOID WINAPI EntourSetSystemRegionUpperBound(_In_ LPCVOID pSystemRegionUpperBound)
 {
     PVOID pPrevious = s_pSystemRegionUpperBound;
     s_pSystemRegionUpperBound = (PVOID)pSystemRegionUpperBound;
@@ -1845,13 +1845,13 @@ LONG WINAPI EntourUpdateThread(_In_ HANDLE hThread)
 ///////////////////////////////////////////////////////////// Transacted APIs.
 
 LONG WINAPI EntourAttach_(_Inout_ PVOID *ppPointer,
-                          _In_ const VOID *pEntour)
+                          _In_ LPCVOID pEntour)
 {
     return EntourAttachEx_(ppPointer, pEntour, NULL, NULL, NULL);
 }
 
 LONG WINAPI EntourAttachEx_(_Inout_ PVOID *ppPointer,
-                            _In_ const VOID *pEntour,
+                            _In_ LPCVOID pEntour,
                             _Out_opt_ PENTOUR_TRAMPOLINE *ppRealTrampoline,
                             _Out_opt_ PVOID *ppRealTarget,
                             _Out_opt_ PVOID *ppRealEntour)
@@ -2205,7 +2205,7 @@ LONG WINAPI EntourAttachEx_(_Inout_ PVOID *ppPointer,
 }
 
 LONG WINAPI EntourDetach_(_Inout_ PVOID *ppPointer,
-                          _In_ const VOID *pEntour)
+                          _In_ LPCVOID pEntour)
 {
     LONG error = NO_ERROR;
 
