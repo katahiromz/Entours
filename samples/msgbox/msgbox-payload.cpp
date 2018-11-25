@@ -12,16 +12,16 @@ static auto TrueMessageBoxW = &MessageBoxW;
 extern "C"
 int WINAPI NewMessageBoxA(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType)
 {
-    lpText;
-    lpCaption;
+    UNREFERENCED_PARAMETER(lpText);
+    UNREFERENCED_PARAMETER(lpCaption);
     return TrueMessageBoxA(hWnd, "Hooked", "Hooked", uType);
 }
 
 extern "C"
 int WINAPI NewMessageBoxW(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, UINT uType)
 {
-    lpText;
-    lpCaption;
+    UNREFERENCED_PARAMETER(lpText);
+    UNREFERENCED_PARAMETER(lpCaption);
     return TrueMessageBoxW(hWnd, L"Hooked", L"Hooked", uType);
 }
 
