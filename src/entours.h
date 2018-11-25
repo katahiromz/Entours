@@ -10,8 +10,8 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-#undef ENTOURS_X64
 #undef ENTOURS_X86
+#undef ENTOURS_X64
 #undef ENTOURS_IA64
 #undef ENTOURS_ARM
 #undef ENTOURS_ARM64

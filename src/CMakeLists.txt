@@ -11,9 +11,9 @@ set(ENTOURS_CFLAGS)
 if (MSVC)
     set(ENTOURS_CFLAGS ${ENTOURS_CFLAGS} /W4)
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    set(ENTOURS_CFLAGS ${ENTOURS_CFLAGS} -pedantic -Wall)
+    set(ENTOURS_CFLAGS ${ENTOURS_CFLAGS} -pedantic -Wall -Wno-tautological-compare)
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    set(ENTOURS_CFLAGS ${ENTOURS_CFLAGS} -pedantic -Wall)
+    set(ENTOURS_CFLAGS ${ENTOURS_CFLAGS} -pedantic -Wall -Wno-tautological-compare)
 endif()
 
 # /WX: Treats all warnings as errors.
