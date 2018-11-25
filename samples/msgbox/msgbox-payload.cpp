@@ -12,18 +12,22 @@ static auto TrueMessageBoxW = &MessageBoxW;
 extern "C"
 int WINAPI NewMessageBoxA(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType)
 {
+    lpText;
+    lpCaption;
     return TrueMessageBoxA(hWnd, "Hooked", "Hooked", uType);
 }
 
 extern "C"
 int WINAPI NewMessageBoxW(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, UINT uType)
 {
+    lpText;
+    lpCaption;
     return TrueMessageBoxW(hWnd, L"Hooked", L"Hooked", uType);
 }
 
 BOOL WINAPI DllMain(HINSTANCE hinst, DWORD dwReason, LPVOID reserved)
 {
-    LONG error;
+    LONG error = 0;
     (void)hinst;
     (void)reserved;
 

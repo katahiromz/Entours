@@ -96,7 +96,6 @@ add_compile_options(${ENTOURS_SAMPLE_CFLAGS})
 subdirs(
     syelog
     setdll
-    withdll
     simple
     msgbox
 )
@@ -133,15 +132,5 @@ add_test(
 add_test(
     NAME sleep5-3
     COMMAND $<TARGET_FILE:sleep5>)
-
-if (ENTOURS_BITS EQUAL 32)
-    add_test(
-        NAME withdll-simple32
-        COMMAND $<TARGET_FILE:withdll> -d:$<TARGET_FILE:simple32> $<TARGET_FILE:sleep5>)
-else()
-    add_test(
-        NAME withdll-simple64
-        COMMAND $<TARGET_FILE:withdll> -d:$<TARGET_FILE:simple64> $<TARGET_FILE:sleep5>)
-endif()
 
 ##############################################################################

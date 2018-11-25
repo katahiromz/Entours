@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "entours.h"
 
-int main(int argc, char ** argv)
+int main(void)
 {
     MessageBox(NULL, TEXT("Unhooked"), TEXT("Unhooked"), MB_ICONINFORMATION);
 

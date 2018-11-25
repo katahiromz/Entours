@@ -593,11 +593,11 @@ VOID VSafePrintf(PCSTR pszMsg, va_list args, PCHAR pszBuffer, LONG cbBuffer)
         *pszOut = '\0';
         pszBuffer[cbBuffer - 1] = '\0';
     } __except(EXCEPTION_EXECUTE_HANDLER) {
-        PCHAR pszOut = pszBuffer;
-        *pszOut = '\0';
-        pszOut = do_str(pszOut, pszEnd, "-exception:");
-        pszOut = do_base(pszOut, (UINT64)GetExceptionCode(), 10, "0123456789");
-        pszOut = do_str(pszOut, pszEnd, "-");
+        PCHAR pszOut2 = pszBuffer;
+        *pszOut2 = '\0';
+        pszOut2 = do_str(pszOut2, pszEnd, "-exception:");
+        pszOut2 = do_base(pszOut2, (UINT64)GetExceptionCode(), 10, "0123456789");
+        pszOut2 = do_str(pszOut2, pszEnd, "-");
     }
 }
 

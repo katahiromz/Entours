@@ -58,6 +58,8 @@ elseif (MSVC)
     #add_link_options(/NODEFAULTLIB:libcmtd)
 endif()
 
+set(ENTOURS_CONFIG "")
+
 ##############################################################################
 # options
 
@@ -71,16 +73,30 @@ if (ENTOURS_NO_SEH)
     add_definitions(-DENTOURS_NO_SEH)
 endif()
 
-##############################################################################
+option(ENTOURS_X86 "Use X86 Entours" OFF)
+option(ENTOURS_X64 "Use X64 (AMD64) Entours" OFF)
+option(ENTOURS_IA64 "Use IA64 Entours" OFF)
+option(ENTOURS_ARM "Use ARM Entours" OFF)
+option(ENTOURS_ARM64 "Use ARM64 Entours" OFF)
 
-set(ENTOURS_CONFIG "")
-
-# TODO: Choose one of the followings:
-set(ENTOURS_TARGET_PROCESSOR "X86")
-#set(ENTOURS_TARGET_PROCESSOR "X64")
-#set(ENTOURS_TARGET_PROCESSOR "IA64")
-#set(ENTOURS_TARGET_PROCESSOR "ARM")
-#set(ENTOURS_TARGET_PROCESSOR "ARM64")
+if (ENTOURS_X64)
+    add_definitions(-DENTOURS_X64)
+    set(ENTOURS_TARGET_PROCESSOR "X64")
+elseif (ENTOURS_IA64)
+    add_definitions(-DENTOURS_IA64)
+    set(ENTOURS_TARGET_PROCESSOR "IA64")
+elseif (ENTOURS_X86)
+    add_definitions(-DENTOURS_X86)
+    set(ENTOURS_TARGET_PROCESSOR "X86")
+elseif (ENTOURS_ARM)
+    add_definitions(-DENTOURS_ARM)
+    set(ENTOURS_TARGET_PROCESSOR "ARM")
+elseif (ENTOURS_ARM64)
+    add_definitions(-DENTOURS_ARM64)
+    set(ENTOURS_TARGET_PROCESSOR "ARM64")
+else()
+    message(FATAL_ERROR "Please choose one processor.")
+endif()
 
 ##############################################################################
 

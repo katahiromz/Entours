@@ -10,42 +10,28 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-#undef ENTOURS_X86
-#undef ENTOURS_X64
-#undef ENTOURS_IA64
-#undef ENTOURS_ARM
-#undef ENTOURS_ARM64
-#undef ENTOURS_BITS
-#undef ENTOURS_32BIT
-#undef ENTOURS_64BIT
+#if !defined(ENTOURS_X86) && !defined(ENTOURS_X64) && !defined(ENTOURS_IA64) && \
+    !defined(ENTOURS_ARM) && !defined(ENTOURS_ARM64)
+    #error Please choose ENTOURS_X86, ENTOURS_X64, ENTOURS_IA64, \
+ENTOURS_ARM or ENTOURS_ARM64.
+#endif
 
-#if defined(_X86_)
-    #define ENTOURS_X86
-    #define ENTOURS_OPTION_BITS 64
-#elif defined(_AMD64_)
-    #define ENTOURS_X64
+#if defined(ENTOURS_X64)
     #define ENTOURS_OPTION_BITS 32
 #elif defined(_IA64_)
-    #define ENTOURS_IA64
     #define ENTOURS_OPTION_BITS 32
-#elif defined(_ARM_)
-    #define ENTOURS_ARM
-#elif defined(_ARM64_)
-    #define ENTOURS_ARM64
-#else
-    #error Unknown architecture (x86, amd64, ia64, arm, arm64)
+#elif defined(_X86_)
+    #define ENTOURS_OPTION_BITS 64
 #endif
 
 #ifdef _WIN64
     #undef ENTOURS_32BIT
     #define ENTOURS_64BIT 1
     #define ENTOURS_BITS 64
-    //#define ENTOURS_OPTION_BITS 32
 #else
     #define ENTOURS_32BIT 1
     #undef ENTOURS_64BIT
     #define ENTOURS_BITS 32
-    //#define ENTOURS_OPTION_BITS 32
 #endif
 
 #define VER_ENTOURS_BITS    ENTOUR_STRINGIFY(ENTOURS_BITS)
@@ -88,6 +74,9 @@
         #define C_ASSERT(expr) typedef char __C_ASSERT__[(expr) ? 1 : -1]
     #endif
 #endif
+
+#undef ARRAYSIZE
+#define ARRAYSIZE(array)    (sizeof(array) / sizeof(array[0]))
 
 //////////////////////////////////////////////////////////////////////////////
 
